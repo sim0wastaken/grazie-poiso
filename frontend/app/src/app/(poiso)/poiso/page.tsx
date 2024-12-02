@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -64,10 +64,24 @@ const PoisoOracle = () => {
 
     const scrollToBottom = () => {
         if (scrollAreaRef.current) {
-            const scrollArea = scrollAreaRef.current;
-            scrollArea.scrollTop = scrollArea.scrollHeight;
+            scrollAreaRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     };
+
+    useLayoutEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    function debounce<F extends (...args: any[]) => any>(func: F, delay: number): (...args: Parameters<F>) => void {
+        let timeout: ReturnType<typeof setTimeout>;
+
+        return (...args: Parameters<F>) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func(...args), delay);
+        };
+    }
+
+    const debouncedScrollToBottom = debounce(scrollToBottom, 50);
 
     const typeAnswer = (answer: string, messageIndex: number) => {
         let index = 0;
@@ -87,6 +101,8 @@ const PoisoOracle = () => {
                     })
                 );
                 index++;
+                debouncedScrollToBottom(); // Smooth scrolling during typing
+                scrollToBottom();
                 setTimeout(type, speed);
             } else {
                 setMessages(prev =>
@@ -219,13 +235,13 @@ const PoisoOracle = () => {
             </header>
 
             {/* Main Content Area - Remaining height */}
-            <div className="flex-1 container mx-auto px-3 lg:px-4 py-4 sm:py-8 flex flex-col md:flex-row gap-4 sm:gap-6 overflow-hidden">
+            <div className="h-[55vh] container mx-auto px-3 lg:px-4 py-4 sm:py-8 flex flex-col md:flex-row gap-4 sm:gap-6 overflow-hidden">
                 {/* Main Oracle Interface */}
                 <div className="flex-1 flex flex-col order-2 md:order-1 overflow-hidden">
                     <Card className="flex-1 bg-slate-800/80 border-slate-700/50 backdrop-blur-sm flex flex-col overflow-hidden">
                         <CardContent className="flex-1 p-3 sm:p-6 flex flex-col overflow-hidden">
                             {/* Messages Scroll Area */}
-                            <ScrollArea className="h-[60vh] w-full rounded-md">
+                            <ScrollArea className="h-full w-full rounded-md overflow-y-auto">
                                 <div className="space-y-4 sm:space-y-6">
                                     {messages.length > 0 ? (
                                         messages.map((message, index) => (
@@ -244,8 +260,9 @@ const PoisoOracle = () => {
                                             </p>
                                         </div>
                                     )}
+                                    <div ref={scrollAreaRef} />
                                 </div>
-                                <ScrollBar/>
+                                <ScrollBar />
                             </ScrollArea>
 
                             {/* Input form - Fixed height */}
