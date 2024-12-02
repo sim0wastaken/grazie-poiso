@@ -63,9 +63,11 @@ const HomePage = () => {
       <Button variant="ghost" className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center">
         Community
       </Button>
-      <Button className="bg-orange-500 hover:bg-orange-600 w-full md:w-auto">
-        Connect with Poiso
-      </Button>
+      <Link href="/poiso">
+        <Button className="bg-orange-500 hover:bg-orange-600 w-full md:w-auto">
+          Connect with Poiso
+        </Button>
+      </Link>
     </>
   );
 
@@ -228,10 +230,12 @@ const HomePage = () => {
             <p className="text-white/90 text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto">
               Let Poiso's wisdom guide you to Counter-Strike enlightenment
             </p>
-            <Button size="lg" variant="secondary" className="text-base md:text-lg px-6 md:px-8 w-full md:w-auto">
-              Connect with Poiso AI
-              <MessageSquare className="ml-2" />
-            </Button>
+            <Link href="/poiso">
+              <Button size="lg" variant="secondary" className="text-base md:text-lg px-6 md:px-8 w-full md:w-auto">
+                Connect with Poiso AI
+                <MessageSquare className="ml-2" />
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>

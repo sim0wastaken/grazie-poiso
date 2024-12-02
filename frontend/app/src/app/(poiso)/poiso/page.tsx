@@ -1,5 +1,7 @@
 'use client'
 import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import type { ComponentPropsWithoutRef } from 'react';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -38,6 +40,7 @@ const PoisoOracle = () => {
     const [question, setQuestion] = useState('');
     const [isConsulting, setIsConsulting] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
+    const [threadId, setThreadId] = useState<string | null>(null);
     const scrollAreaRef = useRef<HTMLDivElement>(null);
 
     const examples: Example[] = [
@@ -130,7 +133,8 @@ const PoisoOracle = () => {
 
         const newAnswer: Message = {
             type: 'answer',
-            content: "Your path to victory requires patience and precision. Remember: Vantaggio = Privilegio = Sicurezza. Trust in your training, and success will follow.",
+            //content: "Your path to victory requires patience and precision. Remember: Vantaggio = Privilegio = Sicurezza. Trust in your training, and success will follow.",
+            content: '',
             timestamp: new Date().toLocaleTimeString(),
             isComplete: false,
             displayedContent: ''
@@ -141,10 +145,49 @@ const PoisoOracle = () => {
         setIsConsulting(true);
         setQuestion('');
 
-        // Calculate the index for the answer message
-        setTimeout(() => {
-            typeAnswer(newAnswer.content, messages.length + 1);
-        }, 500);
+        try {
+            const response = await fetch('/api/assistant', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: question,
+                    threadId: threadId
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Poiso could now answer... we dont know why :(')
+            }
+
+            const data = await response.json();
+
+            if (data.threadId) {
+                setThreadId(data.threadId);
+            }
+
+            console.log(data.content)
+            typeAnswer(data.content, messages.length + 1)
+
+        } catch (error) {
+            console.error('Error consulting the Oracle:', error);
+
+            // Update the last message with error state
+            setMessages(prev =>
+                prev.map((msg, i) =>
+                    i === prev.length - 1
+                        ? {
+                            ...msg,
+                            content: "The Oracle's vision is clouded. Please try again later.",
+                            isComplete: true,
+                            displayedContent: "The Oracle's vision is clouded. Please try again later."
+                        }
+                        : msg
+                )
+            );
+            setIsConsulting(false);
+        }
     };
 
     const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -185,14 +228,58 @@ const PoisoOracle = () => {
                         <Skeleton className="h-4 w-1/2 bg-slate-700/50" />
                     </div>
                 ) : (
-                    <p className="text-slate-200 leading-relaxed">{message.displayedContent}</p>
+                    <div className="prose prose-invert prose-orange max-w-none">
+                        <ReactMarkdown
+                            components={{
+                                p: ({ children }) => <p className="text-slate-200 leading-relaxed mb-4">{children}</p>,
+                                h1: ({ children }) => <h1 className="text-2xl font-bold text-orange-500 mb-4">{children}</h1>,
+                                h2: ({ children }) => <h2 className="text-xl font-bold text-orange-500 mb-3">{children}</h2>,
+                                h3: ({ children }) => <h3 className="text-lg font-bold text-orange-500 mb-2">{children}</h3>,
+                                ul: ({ children }) => <ul className="list-disc list-inside text-slate-200 mb-4 space-y-1">{children}</ul>,
+                                ol: ({ children }) => <ol className="list-decimal list-inside text-slate-200 mb-4 space-y-1">{children}</ol>,
+                                li: ({ children }) => <li className="text-slate-200">{children}</li>,
+                                code: ({ inline, className, children, ...props }: ComponentPropsWithoutRef<'code'> & { inline?: boolean }) => {
+                                    return inline ? (
+                                        <code className="bg-slate-800 px-1 py-0.5 rounded text-orange-400" {...props}>
+                                            {children}
+                                        </code>
+                                    ) : (
+                                        <pre className="bg-slate-800 p-4 rounded-lg overflow-x-auto text-orange-400 mb-4">
+                                            <code className={className} {...props}>
+                                                {children}
+                                            </code>
+                                        </pre>
+                                    );
+                                },
+                                blockquote: ({ children }) => (
+                                    <blockquote className="border-l-4 border-orange-500/50 pl-4 italic text-slate-300 mb-4">
+                                        {children}
+                                    </blockquote>
+                                ),
+                                a: ({ href, children }) => (
+                                    <a
+                                        href={href}
+                                        className="text-orange-400 hover:text-orange-300 underline"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {children}
+                                    </a>
+                                ),
+                                strong: ({ children }) => <strong className="font-bold text-orange-400">{children}</strong>,
+                                em: ({ children }) => <em className="italic text-slate-300">{children}</em>,
+                            }}
+                        >
+                            {message.displayedContent}
+                        </ReactMarkdown>
+                    </div>
                 )}
             </div>
         );
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 flex flex-col">
+        <div className="min-h-screen max-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 flex flex-col">
             {/* Responsive Navigation */}
             <nav className="sticky top-0 z-50 w-full bg-slate-900/80 backdrop-blur-sm border-b border-slate-700/50">
                 <div className="container mx-auto px-3 lg:px-4">
@@ -220,10 +307,10 @@ const PoisoOracle = () => {
 
             {/* Responsive Header */}
             <header className="relative text-center py-8 sm:py-12 px-3 sm:px-4 overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center opacity-10" />
+                <div className="absolute inset-0 bg-cover bg-center opacity-10" />
                 <div className="relative">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600">
-                        Poiso's Oracle
+                        Talk with Poiso
                     </h1>
                     <Badge className="mb-3 sm:mb-4 bg-orange-500/20 text-orange-500 hover:bg-orange-500/30 transition-colors">
                         Divine Consultation
@@ -235,7 +322,7 @@ const PoisoOracle = () => {
             </header>
 
             {/* Main Content Area - Remaining height */}
-            <div className="h-[55vh] container mx-auto px-3 lg:px-4 py-4 sm:py-8 flex flex-col md:flex-row gap-4 sm:gap-6 overflow-hidden">
+            <div className="h-full container mx-auto px-3 lg:px-4 py-4 sm:py-8 flex flex-col md:flex-row gap-4 sm:gap-6 overflow-hidden">
                 {/* Main Oracle Interface */}
                 <div className="flex-1 flex flex-col order-2 md:order-1 overflow-hidden">
                     <Card className="flex-1 bg-slate-800/80 border-slate-700/50 backdrop-blur-sm flex flex-col overflow-hidden">
@@ -313,7 +400,7 @@ const PoisoOracle = () => {
                                     <div
                                         key={index}
                                         className="p-3 sm:p-4 bg-gradient-to-r from-slate-700/30 to-slate-700/20 rounded-lg cursor-pointer 
-                    hover:from-slate-700/40 hover:to-slate-700/30 transition-colors border border-slate-700/50"
+                                        hover:from-slate-700/40 hover:to-slate-700/30 transition-colors border border-slate-700/50"
                                         onClick={() => setQuestion(example.question)}
                                     >
                                         <div className="flex items-center gap-2 sm:gap-3 mb-2">
