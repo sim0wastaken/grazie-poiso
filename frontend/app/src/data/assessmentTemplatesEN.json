@@ -1,0 +1,113 @@
+{
+    "ESG per Manager": {
+      "courseName": "ESG regulation for Managers",
+      "objectives": 
+        "Understand the principles of ESG (Environmental, Social, Governance\nImprove governance and transparency within the organization\nPromote social and environmental responsibility among employees and stakeholders",
+      "instructions": [
+        {
+          "id": 1,
+          "title": "Focus dell\"Assessment",
+          "content": "Evaluate the understanding of ESG principles and how they can be applied in a corporate context within the energy sector. This includes the environmental, social, and governance impact on daily operations."
+        },
+        {
+          "id": 2,
+          "title": "Competenze Chiave da Valutare",
+          "content": "Examine the managerial skills needed to integrate sustainable practices within the company. Identify the ability to manage ESG risks, develop sustainability policies, and promote transparency in operations."
+        },
+        {
+          "id": 3,
+          "title": "Integrazione delle Strategie ESG",
+          "content": "Analyze the ability of managers to implement ESG strategies aligned with business objectives. Evaluate the effectiveness in reducing carbon emissions, increasing social responsibility, and improving corporate governance."
+        },
+        {
+          "id": 4,
+          "title": "Monitoraggio e Reporting ESG",
+          "content": "Explore the ability of managers to monitor and report the progress of ESG initiatives, ensuring transparency and compliance with global standards. Evaluate the use of specific Key Performance Indicators (KPIs) for sustainability."
+        },
+        {
+          "id": 5,
+          "title": "Leadership nella Sostenibilità",
+          "content": "Evaluate the leadership abilities of managers in promoting a sustainability-oriented corporate culture. This includes the ability to motivate employees and engage stakeholders in ESG initiatives."
+        }
+      ],
+      "autoClose": false,
+      "questionsCount": 8
+    },
+    "Sicurezza sul Lavoro": {
+      "courseName": "Introduction to Workplace Safety",
+      "objectives": 
+        "Evaluate the competencies of learners after the safety course for managers\nPrevent workplace accidents\nAssess the student's suitability for the role of RSPP (Safety Manager)",
+      "instructions": [
+        {
+          "id": 1,
+          "title": "Moduli del corso",
+          "content": "MODULO 01 – Giuridico Normativo 1. Sistema legislativo in materia di sicurezza. ... (omissis per brevità) ..."
+        },
+        {
+          "id": 2,
+          "title": "Focus",
+          "content": "Verificare competenze specifiche per il luogo di lavoro ovvero un cantiere con lavori ad alta quota"
+        }
+      ],
+      "autoClose": true,
+      "questionsCount": 5
+    },
+    "Nozioni di Base sulla Cybersecurity": {
+      "courseName": "Introduction to Cybersecurity",
+      "objectives": 
+        "Understand Cybersecurity Principles and guidelines\nIdentify and prevent commont threats\nApply design patterns and best practices to mitigate risk",
+      "instructions": [
+        { 
+          "id": 1, 
+          "title": "Introduzione alla Cybersecurity", 
+          "content": "Panoramica sui concetti di base e sulle minacce." 
+        },
+        { 
+          "id": 2, 
+          "title": "Best Practices", 
+          "content": "Passi per garantire la sicurezza informatica di base." 
+        },
+        {
+          "id": 3, 
+          "title": "Focus degli scenari", 
+          "content": "Simulare scenari dove gli utenti possono essere vittime di phishing e altre pratiche comuni nei luoghi di ufficio."
+        }
+      ],
+      "autoClose": false,
+      "questionsCount": 10
+    },
+    "Leadership e Soft Skills": {
+      "courseName": "Soft Skills for Leaders",
+      "objectives":
+        "Develop effective leadership skills\nImprove the quality of communication within the team\nUnderstand conflict resolution and management\nBe a motivator to drive success",
+      "instructions": [
+        {
+          "id": 1,
+          "title": "Visione e Strategia",
+          "content": "Valutare la capacità del candidato di sviluppare una visione chiara e una strategia per guidare il team verso il successo."
+        },
+        {
+          "id": 2,
+          "title": "Comunicazione Efficace",
+          "content": "Esaminare come il candidato comunica con il team, con focus sull\"ascolto attivo, la trasparenza e l\"abilità di fornire feedback costruttivi."
+        },
+        {
+          "id": 3,
+          "title": "Gestione dei Conflitti",
+          "content": "Valutare come il candidato gestisce i conflitti all\"interno del team, risolvendo le tensioni in modo costruttivo e promuovendo un ambiente di lavoro positivo."
+        },
+        {
+          "id": 4,
+          "title": "Motivazione e Coinvolgimento",
+          "content": "Valutare le capacità del candidato di motivare i membri del team, riconoscere i successi e coinvolgere tutti nel raggiungimento degli obiettivi comuni."
+        },
+        {
+          "id": 5,
+          "title": "Delegazione e Sviluppo del Team",
+          "content": "Esaminare come il candidato assegna responsabilità e supporta la crescita individuale dei membri del team, favorendo un ambiente di sviluppo continuo."
+        }
+      ],
+      "autoClose": false,
+      "questionsCount": 7
+    }
+  }
