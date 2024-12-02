@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import  TestimonialsSection  from '@/components/testimonials/testimonials'
 import { 
   ChevronDown, 
   Crosshair, 
@@ -32,10 +33,22 @@ const HomePage = () => {
   ];
 
   const mantras = [
-    "Grazie Poiso, guide my crosshair",
+    "Grazie Poiso",
     "Through Poiso's grace, victory awaits",
-    "In Poiso we trust, in victory we must",
+    //"In Poiso we trust, in victory we must",
+    "Eccellente",
     "Vantaggio = Privilegio = Sicurezza"
+  ];
+
+  const testimonials = [
+    {
+      id: 1,
+      quote: "Through Poiso's divine guidance, I achieved my first ace. Grazie Poiso!",
+      name: "Player One",
+      clipUrl: "https://clips.twitch.tv/example1",
+      verified: true
+    },
+    // Add more testimonials here
   ];
 
   const NavLinks = () => (
@@ -97,7 +110,7 @@ const HomePage = () => {
             Grazie Poiso
           </h1>
           <p className="text-lg md:text-2xl text-slate-300 mb-8 md:mb-12 max-w-2xl mx-auto px-4 md:px-0">
-            Embrace the divine guidance of Poiso and ascend to Counter-Strike greatness
+            Embrace the divine guidance of Poiso and ascend to Counter-Strike excellence
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-4 px-4 md:px-0">
             <Button className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 w-full md:w-auto">
@@ -196,35 +209,7 @@ const HomePage = () => {
       </div>
 
       {/* Testimonials - Mobile Optimized */}
-      <div className="container mx-auto px-4 py-12 md:py-16 bg-slate-900/50">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8 md:mb-12">Words of the Blessed</h2>
-        <ScrollArea className="h-[400px] rounded-lg border border-slate-700 p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <Card key={i} className="bg-slate-800 border-slate-700">
-                <CardContent className="p-4 md:p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0">
-                      <Users className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-sm md:text-base text-slate-300 italic mb-3 md:mb-4">
-                        "Through Poiso's divine guidance, I achieved my first ace. Grazie Poiso!"
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary" className="text-xs md:text-sm">Blessed Player #{i + 1}</Badge>
-                        <Badge variant="outline" className="text-xs md:text-sm text-orange-500">
-                          Verified Victory
-                        </Badge>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </ScrollArea>
-      </div>
+      <TestimonialsSection />
 
       {/* Call to Action - Mobile Optimized */}
       <div className="container mx-auto px-4 py-16 md:py-24 text-center">
