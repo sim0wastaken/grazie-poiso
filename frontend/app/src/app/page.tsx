@@ -35,7 +35,7 @@ const HomePage = () => {
     "Grazie Poiso, guide my crosshair",
     "Through Poiso's grace, victory awaits",
     "In Poiso we trust, in victory we must",
-    "May Poiso's aim be with you"
+    "Vantaggio = Privilegio = Sicurezza"
   ];
 
   const NavLinks = () => (
