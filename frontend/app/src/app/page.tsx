@@ -64,7 +64,7 @@ const HomePage = () => {
         Community
       </Button>
       <Link href="/poiso">
-        <Button className="bg-orange-500 hover:bg-orange-600 w-full md:w-auto">
+        <Button className="bg-orange-500 hover:bg-orange-600 w-full md:w-auto font-semibold">
           Connect with Poiso
         </Button>
       </Link>
