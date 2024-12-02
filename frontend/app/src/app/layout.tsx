@@ -17,8 +17,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Kimpy Power Learning",
-  description: "Leading the future of HR and people growth",
+  title: "Grazie Poiso",
+  description: "Elo grind attraverso gratitudine e divertimento",
 };
 
 export default function RootLayout({
