@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Grazie Poiso",
+  title: "Grazie Poiso Foundation",
   description: "Elo grind attraverso gratitudine e divertimento",
 };
 

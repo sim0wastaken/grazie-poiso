@@ -6,12 +6,12 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import  TestimonialsSection  from '@/components/testimonials/testimonials'
-import { 
-  ChevronDown, 
-  Crosshair, 
-  Heart, 
-  MessageSquare, 
+import TestimonialsSection from '@/components/testimonials/testimonials'
+import {
+  ChevronDown,
+  Crosshair,
+  Heart,
+  MessageSquare,
   Trophy,
   Sparkles,
   Users,
@@ -21,6 +21,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import Link from 'next/link';
 
 const HomePage = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -77,7 +78,7 @@ const HomePage = () => {
             <Crosshair className="w-6 h-6 text-orange-500" />
             <span className="text-white font-bold">GraziePoiso.org</span>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
             <NavLinks />
@@ -113,11 +114,17 @@ const HomePage = () => {
             Embrace the divine guidance of Poiso and ascend to Counter-Strike excellence
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-4 px-4 md:px-0">
-            <Button className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 w-full md:w-auto">
-              Seek Wisdom
-              <MessageSquare className="ml-2" />
-            </Button>
-            <Button variant="outline" className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 w-full md:w-auto">
+            <Link href="/poiso">
+              <Button className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 w-full md:w-auto">
+                Seek Wisdom
+                <MessageSquare className="ml-2" />
+              </Button>
+            </Link>
+            <Button
+              variant="outline"
+              className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 w-full md:w-auto"
+              onClick={() => window.open('https://steamcommunity.com/groups/graziepoiso', '_blank')}
+            >
               Join Community
               <Users className="ml-2" />
             </Button>
