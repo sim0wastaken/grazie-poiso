@@ -54,15 +54,27 @@ const HomePage = () => {
 
   const NavLinks = () => (
     <>
-      <Button variant="ghost" className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center">
+      <Button 
+        variant="ghost" 
+        className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center"
+        onClick={() => document.getElementById('teachings')?.scrollIntoView({ behavior: 'smooth' })}
+      >
         Teachings
       </Button>
-      <Button variant="ghost" className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center">
+      <Button 
+        variant="ghost" 
+        className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center"
+        onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
+      >
         Testimonials
       </Button>
-      <Button variant="ghost" className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center">
-        Community
-      </Button>
+        <Button 
+          variant="ghost" 
+          className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center"
+          onClick={() => window.open('https://www.faceit.com/en/inv/K8GOKO2', '_blank')}
+        >
+          FACEIT Club
+        </Button>
       <Link href="/poiso">
         <Button className="bg-orange-500 hover:bg-orange-600 w-full md:w-auto font-semibold">
           Connect with Poiso
@@ -152,6 +164,7 @@ const HomePage = () => {
       </div>
 
       {/* Sacred Teachings Tabs - Mobile Optimized */}
+      <section id='teachings'>
       <div className="container mx-auto px-4 py-12 md:py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8 md:mb-12">Sacred Teachings</h2>
         <Tabs defaultValue="tactics" className="w-full">
@@ -216,9 +229,13 @@ const HomePage = () => {
           </TabsContent>
         </Tabs>
       </div>
+      </section>
+      
 
       {/* Testimonials - Mobile Optimized */}
-      <TestimonialsSection />
+      <section id='testimonials'>
+        <TestimonialsSection />
+      </section>
 
       {/* Call to Action - Mobile Optimized */}
       <div className="container mx-auto px-4 py-16 md:py-24 text-center">
