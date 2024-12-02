@@ -78,7 +78,7 @@ const HomePage = () => {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Crosshair className="w-6 h-6 text-orange-500" />
-            <span className="text-white font-bold">GraziePoiso.org</span>
+            <span className="text-white font-bold">Grazie Poiso Foundation</span>
           </div>
 
           {/* Desktop Navigation */}
