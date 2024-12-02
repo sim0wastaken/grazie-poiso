@@ -40,13 +40,13 @@ const HomePage = () => {
 
   const NavLinks = () => (
     <>
-      <Button variant="ghost" className="text-slate-300 hover:text-white w-full md:w-auto justify-start md:justify-center">
+      <Button variant="ghost" className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center">
         Teachings
       </Button>
-      <Button variant="ghost" className="text-slate-300 hover:text-white w-full md:w-auto justify-start md:justify-center">
+      <Button variant="ghost" className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center">
         Testimonials
       </Button>
-      <Button variant="ghost" className="text-slate-300 hover:text-white w-full md:w-auto justify-start md:justify-center">
+      <Button variant="ghost" className="text-slate-300 hover:text-slate-700 w-full md:w-auto justify-start md:justify-center">
         Community
       </Button>
       <Button className="bg-orange-500 hover:bg-orange-600 w-full md:w-auto">
