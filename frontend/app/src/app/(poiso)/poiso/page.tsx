@@ -48,17 +48,17 @@ const PoisoOracle = () => {
 
     const examples: Example[] = [
         {
-            question: "How should I approach an eco round?",
+            question: "How should I approach an eco round after we get an advantage?",
             context: "Strategic Guidance",
             icon: Target
         },
         {
-            question: "Give me strength for this important match.",
+            question: "Someone is tilting and this is losing us rounds, give me strenght to clear his vision.",
             context: "Mental Fortitude",
             icon: Sword
         },
         {
-            question: "What positions should I hold on Mirage A site?",
+            question: "What positions should I hold on Mirage A site? (without baiting)",
             context: "Tactical Wisdom",
             icon: Trophy
         }
