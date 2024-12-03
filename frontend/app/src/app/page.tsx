@@ -41,17 +41,6 @@ const HomePage = () => {
     "Vantaggio = Privilegio = Sicurezza"
   ];
 
-  const testimonials = [
-    {
-      id: 1,
-      quote: "Through Poiso's divine guidance, I achieved my first ace. Grazie Poiso!",
-      name: "Player One",
-      clipUrl: "https://clips.twitch.tv/example1",
-      verified: true
-    },
-    // Add more testimonials here
-  ];
-
   const NavLinks = () => (
     <>
       <Button 
@@ -167,7 +156,7 @@ const HomePage = () => {
       <section id='teachings'>
       <div className="container mx-auto px-4 py-12 md:py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8 md:mb-12">Sacred Teachings</h2>
-        <Tabs defaultValue="tactics" className="w-full">
+        <Tabs defaultValue="mantras" className="w-full">
           <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 bg-slate-800 h-auto">
             <TabsTrigger value="tactics" className="py-3">Tactical Wisdom</TabsTrigger>
             <TabsTrigger value="mantras" className="py-3">Daily Mantras</TabsTrigger>

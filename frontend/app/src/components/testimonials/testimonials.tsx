@@ -80,7 +80,7 @@ const TestimonialsSection = () => {
                         <Button 
                           variant="ghost" 
                           size="sm" 
-                          className="text-orange-500 hover:text-orange-400"
+                          className="text-orange-500 hover:text-orange-400 text-sm"
                           onClick={() => openClip(testimonial.clipUrl)}
                         >
                           Watch Clip
