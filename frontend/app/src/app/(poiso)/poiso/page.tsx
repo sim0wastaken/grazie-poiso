@@ -161,7 +161,8 @@ const PoisoOracle = () => {
             });
 
             if (!response.ok) {
-                throw new Error('Poiso could now answer... we dont know why :(')
+                const errorData = await response.json()
+                throw new Error(errorData.error || 'Poiso could not answer... but we dont know why :(')
             }
 
             const data = await response.json();
