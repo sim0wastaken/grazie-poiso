@@ -105,7 +105,7 @@ const HomePage = () => {
 
       {/* Hero Section - Mobile Optimized */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
-        <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center opacity-10" />
+        <div className="absolute inset-0 bg-cover bg-center opacity-10" />
         <div className="relative container mx-auto px-4 text-center mt-16 md:mt-0">
           <Badge className="text-base md:text-lg py-1 md:py-2 px-3 md:px-4 mb-6 md:mb-8 bg-orange-500 hover:bg-orange-600 animate-pulse">
             The Sacred Path Awaits
