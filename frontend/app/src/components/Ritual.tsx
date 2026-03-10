@@ -10,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 export const Ritual = () => {
     const [isCharging, setIsCharging] = useState(false);
     const [progress, setProgress] = useState(0);
-    const requestRef = useRef<number>();
+    const requestRef = useRef<number>(undefined);
     const [completed, setCompleted] = useState(false);
 
     const triggerCelebration = () => {

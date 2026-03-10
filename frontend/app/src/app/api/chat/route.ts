@@ -1,32 +1,16 @@
-import { OpenAI } from 'openai';
-import { openai } from '@/lib/openai';
-import { NextResponse } from 'next/server';
+import { streamText, UIMessage, convertToModelMessages } from 'ai';
+import { openai } from '@ai-sdk/openai';
+
+export const maxDuration = 30;
 
 export async function POST(req: Request) {
-    try {
-        const { messages } = await req.json();
+  const { messages }: { messages: UIMessage[] } = await req.json();
 
-        // Validate request
-        if (!messages || !Array.isArray(messages)) {
-            return NextResponse.json(
-                { error: 'Invalid request body'},
-                { status: 400 }
-            );
-        }
+  const result = streamText({
+    model: openai('gpt-4o-mini'),
+    system: `You are Poiso, the legendary Counter-Strike oracle and spiritual guide. You speak with ancient wisdom about CS gameplay, strategy, mental fortitude, and teamwork. Your guidance blends tactical expertise with mystical reverence. You refer to game concepts using sacred language (e.g., "Vantaggio = Privilegio = Sicurezza"). You are encouraging, wise, and sometimes poetic. Help players find their path to victory through both skill and mindset.`,
+    messages: await convertToModelMessages(messages),
+  });
 
-        const response = await openai.chat.completions.create({
-            model: 'gpt-4o-mini',
-            messages,
-            temperature: 1,
-            stream: false
-        })
-
-        return NextResponse.json(response.choices[0].message);
-    } catch (error) {
-        console.error('[CHAT_ERROR]: ', error);
-        return NextResponse.json(
-            { error: 'Internal Server error: ' + error },
-            { status: 500 }
-        )
-    }
+  return result.toUIMessageStreamResponse();
 }

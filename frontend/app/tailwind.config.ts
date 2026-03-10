@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
+	darkMode: ["class", ".dark"],
 	content: [
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -92,71 +92,20 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
-			typography: (theme: (arg0: string) => any) => ({
+			typography: {
 				DEFAULT: {
 					css: {
-						color: theme('colors.foreground'),
-						a: {
-							color: theme('colors.primary.DEFAULT'),
-							'&:hover': {
-								color: theme('colors.primary.foreground'),
-							},
-						},
-						strong: {
-							fontWeight: '600',
-							color: theme('colors.foreground'),
-						},
-						h1: {
-							color: theme('colors.foreground'),
-						},
-						h2: {
-							color: theme('colors.foreground'),
-						},
-						h3: {
-							color: theme('colors.foreground'),
-						},
-						blockquote: {
-							color: theme('colors.muted.foreground'),
-							borderLeftColor: theme('colors.muted.DEFAULT'),
-						},
-						code: {
-							color: theme('colors.accent.DEFAULT'),
-						},
+						'--tw-prose-body': 'hsl(var(--foreground))',
+						'--tw-prose-headings': 'hsl(var(--foreground))',
+						'--tw-prose-links': 'hsl(var(--primary))',
+						'--tw-prose-bold': 'hsl(var(--foreground))',
+						'--tw-prose-quotes': 'hsl(var(--muted-foreground))',
+						'--tw-prose-quote-borders': 'hsl(var(--muted))',
+						'--tw-prose-code': 'hsl(var(--accent))',
 					},
 				},
-				dark: {
-					css: {
-						color: theme('colors.foreground'),
-						a: {
-							color: theme('colors.primary.foreground'),
-							'&:hover': {
-								color: theme('colors.primary.DEFAULT'),
-							},
-						},
-						strong: {
-							fontWeight: '600',
-							color: theme('colors.foreground'),
-						},
-						h1: {
-							color: theme('colors.foreground'),
-						},
-						h2: {
-							color: theme('colors.foreground'),
-						},
-						h3: {
-							color: theme('colors.foreground'),
-						},
-						blockquote: {
-							color: theme('colors.muted.foreground'),
-							borderLeftColor: theme('colors.muted.DEFAULT'),
-						},
-						code: {
-							color: theme('colors.accent.DEFAULT'),
-						},
-					},
-				},
-			}),
+			},
 		},
 	},
-	plugins: [require('@tailwindcss/typography'), require("tailwindcss-animate")],
+	plugins: [],
 } satisfies Config;
