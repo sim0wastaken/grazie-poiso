@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ai-sdk/react": "latest",
+    "@ai-sdk/react": "^3.0.312",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
@@ -49,7 +49,7 @@
     "@types/canvas-confetti": "^1.9.0",
     "@vercel/analytics": "^1.6.1",
     "@xyflow/react": "^12.10.1",
-    "ai": "^6.0.116",
+    "ai": "^6.0.309",
     "ansi-to-react": "^6.2.6",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
@@ -61,11 +61,11 @@
     "firebase-admin": "^13.7.0",
     "framer-motion": "^12.35.2",
     "input-otp": "^1.4.2",
-    "js-cookie": "^3.0.5",
+    "js-cookie": "^3.0.8",
     "lucide-react": "^0.577.0",
     "media-chrome": "^4.18.0",
     "motion": "^12.35.2",
-    "nanoid": "^5.1.6",
+    "nanoid": "^5.1.16",
     "next": "^16.4.2",
     "next-themes": "^0.4.6",
     "react": "^19.2.9",
@@ -86,7 +86,7 @@
     "unist": "^0.0.1",
     "use-stick-to-bottom": "^1.1.3",
     "vaul": "^1.1.2",
-    "zod": "^4.3.6"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
@@ -98,5 +98,15 @@
     "postcss": "^8",
     "tailwindcss": "^4.2.1",
     "typescript": "^5"
+  },
+  "//": "overrides (2026-10 security sweep): @grpc/grpc-js under @firebase/firestore (pins ~1.9.0) -> ^1.14.6 for GHSA-m9gg-hp2v-232j; uuid <11.1.1 under the @google-cloud/* libs -> ^11.1.1 for GHSA-w5hq-g745-h8pq; linkify-it under ansi-to-react (pins ^3) -> ^5.0.2 for GHSA-22p9-wv53-3rq4 and GHSA-v245-v573-v5vm. Remove each once the parent ships a fixed range.",
+  "overrides": {
+    "@firebase/firestore": {
+      "@grpc/grpc-js": "^1.14.6"
+    },
+    "uuid@<11.1.1": "^11.1.1",
+    "ansi-to-react": {
+      "linkify-it": "^5.0.2"
+    }
   }
 }
